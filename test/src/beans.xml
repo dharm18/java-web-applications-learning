@@ -1,11 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
 http://www.springframework.org/schema/util
 http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 
+	<aop:config>
+		<aop:pointcut id="loggingOperation"
+			expression="within(com.test.calculator.IArithmeticCalculator+) || within(com.test.calculator.IUnitCalculator+)" />
+		<aop:aspect id="loggingAspect" ref="calculatorLoggingAspect">
+			<aop:before pointcut-ref="loggingOperation" method="logBefore" />
+			<aop:after pointcut-ref="loggingOperation" method="logAfter" />
+			<aop:after-returning pointcut-ref="loggingOperation"
+				returning="result" method="logAfterReturning" />
+			<aop:after-throwing pointcut-ref="loggingOperation"
+				throwing="e" method="logAfterThrowing" />
+			<aop:around pointcut-ref="loggingOperation" method="logAround" />
+		</aop:aspect>
+	</aop:config>
+
+	<bean id="calculatorLoggingAspect" class="com.test.calculator.CalculatorLoggingAspect" />
+	
+	<bean id="arithmeticCalculator" class="com.test.calculator.ArithmeticCalculator" />
+	<bean id="unitCalculator" class="com.test.calculator.UnitCalculator" />
+	
 
 	<bean id="aaa" class="test.Battery">
 		<property name="name" value="AAA" />
@@ -24,4 +47,24 @@ http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 		<property name="capacity" value="700" />
 	</bean>
 	<bean id="shoppingCart" class="test.ShoppingCart" scope="prototype" />
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>classpath:messages</value>
+			</list>
+		</property>
+		<property name="cacheSeconds" value="1" />
+	</bean>
+
+	<!-- <bean id="cashier" class="test.Cashier"> <property name="messageSource"> 
+		<ref bean="messageSource" /> </property> </bean> -->
+	<bean id="cashier" class="test.Cashier" lazy-init="true"
+		init-method="openFile" destroy-method="closeFile">
+		<property name="fileName" value="checkout" />
+		<property name="path" value="c:/Windows/Temp/cashier" />
+	</bean>
+
+	<!-- <bean class="test.ProductCheckBeanPostProcessor" /> -->
 </beans>

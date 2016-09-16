@@ -1,5 +1,9 @@
 package test;
 
+import java.io.IOException;
+import java.util.Date;
+import java.util.Locale;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
@@ -18,6 +22,21 @@ public class Test {
 		ShoppingCart cart2 = (ShoppingCart) context.getBean("shoppingCart");
 		cart2.addItem(dvdrw);
 		System.out.println("Shopping cart 2 contains " + cart2.getItems());
+		
+		//i18n message display
+		String alert = context.getMessage("alert.checkout", null, Locale.US);
+		System.out.println(alert);
+		
+		 alert = context.getMessage("alert.inventory.checkout",new Object[] { 4, new Date() }, Locale.US);
+		 System.out.println(alert);
+		 
+		 Cashier cashier = (Cashier)context.getBean("cashier");
+		 try {
+			cashier.checkout(cart2);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
