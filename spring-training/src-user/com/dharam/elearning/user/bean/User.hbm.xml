@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.dharam.elearning.user.bean.User" table="USER" dynamic-update="true" dynamic-insert="true">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="identity" />
+		</id>
+		<property name="name" type="string">
+			<column name="name" />
+		</property>
+		<property name="code" type="string">
+			<column name="code" />
+		</property>
+		<property name="description" type="string">
+			<column name="description" />
+		</property>
+		<property name="createdOn" type="java.sql.Timestamp">
+			<column name="created_on" />
+		</property>
+		<property name="modifiedOn" type="java.sql.Timestamp">
+			<column name="modified_on" />
+		</property>
+		<property name="deleteFlag" type="string">
+			<column name="delete_flag" />
+		</property>
+	</class>
+</hibernate-mapping>

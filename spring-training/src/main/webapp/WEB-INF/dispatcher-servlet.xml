@@ -9,6 +9,6 @@ xsi:schemaLocation="
     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     
     <import resource="config/spring/mvc.xml"/>
-    <!-- <import resource="config/spring/restful.xml"/>
-    <import resource="config/spring/hibernate.xml"/> -->
+    <!-- <import resource="config/spring/restful.xml"/> -->
+    <import resource="config/spring/hibernate.xml"/>
 </beans>

@@ -32,7 +32,7 @@ public class submitCustomerFeedback extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("submitCustomerFeedback.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("feedback-popup.jsp");
 		String encodedCustomerId = request.getParameter("cid");
 		byte[] valueDecoded= Base64.decodeBase64(encodedCustomerId.getBytes());
 		String customerId = new String(valueDecoded);

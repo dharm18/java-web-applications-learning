@@ -41,14 +41,14 @@
 		<appender-ref ref="ASYNC" />
 	</logger> -->
 
-	<logger name="com.spring" additivity="false">
-		<level value="INFO" />
+	<logger name="com.intelliswift" additivity="false">
+		<level value="DEBUG" />
 		<appender-ref ref="console" />
 		<appender-ref ref="ASYNC" />
 	</logger>
 
 	<root>
-		<priority value="INFO" />
+		<priority value="DEBUG" />
 		<appender-ref ref="console" />
 		<appender-ref ref="ASYNC" />
 	</root>

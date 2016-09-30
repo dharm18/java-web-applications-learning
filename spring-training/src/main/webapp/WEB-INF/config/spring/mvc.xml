@@ -8,9 +8,10 @@ xsi:schemaLocation="
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<context:component-scan base-package="com.spring" />
+	<!-- enable annotation based config -->
+	<mvc:annotation-driven/>
 	<context:annotation-config />
-
+	<context:component-scan base-package="com.dharam.elearning" />
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
 			<value>/views/</value>
@@ -19,12 +20,34 @@ xsi:schemaLocation="
 			<value>.jsp</value>
 		</property>
 	</bean>
-
-    <!-- <mvc:interceptors>
+	
+	<!-- <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+       All configuration is now done by the manager - since Spring V3.2
+       <property name="contentNegotiationManager" ref="contentNegotiationManager"/>
+    </bean> -->
+	
+	 <!-- <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="ignoreAcceptHeader" value="true"/>        
+        <property name="defaultContentType" value="text/html" />
+        <property name="mediaTypes">
+	        <map>
+	            <entry key="html" value="text/html" />
+	            <entry key="json" value="application/json" />
+	            <entry key="xml" value="application/xml" />
+	            <entry key="pdf" value="application/pdf" />
+	            <entry key="xls" value="application/vnd.ms-excel" />
+	        </map>
+		</property>
+    </bean>
+	 
+	 Make this available across all of Spring MVC
+ 	<mvc:annotation-driven content-negotiation-manager="contentNegotiationManager" /> -->
+	
+    <mvc:interceptors>
     	<mvc:interceptor>
-    		<mvc:mapping path="/*/*.*"/>
-    		<bean class="com.intelliswift.test.generic.util.LoggingAspectInterceptor"></bean>
+    		<mvc:mapping path="/*/*"/>
+    		<bean class="com.dharam.elearning.generic.util.LoggingAspectInterceptor"></bean>
     	</mvc:interceptor>
-    </mvc:interceptors> -->
+    </mvc:interceptors>
 
 </beans>

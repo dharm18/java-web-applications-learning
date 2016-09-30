@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Index Page</title>
+<title>Error</title>
 </head>
 <body>
-Welcome to spring training page
-<a href="user/workbench">Users</a>
+An error has occurred. Please contact our administrator for details.
 </body>
 </html>

@@ -59,7 +59,7 @@
 		<version>${spring.security}</version>
 	</dependency>
 
-	<!-- security -->
+	<!-- /security -->
 	<dependency>
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-webmvc</artifactId>
@@ -235,13 +235,17 @@
       <scope>test</scope>
     </dependency>
     
-	<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-	<dependency>
-	    <groupId>mysql</groupId>
-	    <artifactId>mysql-connector-java</artifactId>
-	    <version>5.1.6</version>
+    <dependency>
+		<groupId>org.apache.poi</groupId>
+		<artifactId>poi</artifactId>
+		<version>3.10-FINAL</version>
 	</dependency>
-    
+	
+	<dependency>
+		<groupId>com.lowagie</groupId>
+		<artifactId>itext</artifactId>
+		<version>4.2.1</version>
+	</dependency>
   </dependencies>
   <build>
     <finalName>spring-training</finalName>
