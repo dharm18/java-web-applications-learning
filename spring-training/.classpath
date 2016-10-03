@@ -17,6 +17,10 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="src" path="src-generics"/>
+	<classpathentry kind="src" path="src-dashboard"/>
+	<classpathentry kind="src" path="src-user"/>
+	<classpathentry kind="src" path="src-login"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>

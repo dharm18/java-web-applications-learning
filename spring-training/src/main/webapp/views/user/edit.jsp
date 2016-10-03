@@ -18,7 +18,7 @@
 		<form:form action="/spring-training/user/update" modelAttribute="user" method="post">
 			<form:hidden path="id"/>
 			<label>Name: </label> <form:input path="name"/><form:errors path="name" cssClass="error" /><br>
-			<label>Code: </label> <form:input path="code"/><form:errors path="code" cssClass="error" /><br>
+			<label>Code: </label> <form:select path="code" items="${codes}" /><form:errors path="code" cssClass="error" /><br>
 			<label>Description: </label> <form:input path="description"/><form:errors path="description" cssClass="error" /><br>
 			<input type="submit">
 		</form:form>
