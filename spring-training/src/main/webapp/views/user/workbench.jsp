@@ -20,6 +20,7 @@
 	
 		<h2>User Workbench</h2>
 		<a href="add">Add user</a> 
+		<a href="<c:url value="/j_spring_security_logout" />">Logout</a>
 		<div class="table-responsive">
 		<table class="table table-condensed table-hover .table-striped">
 			<thead>

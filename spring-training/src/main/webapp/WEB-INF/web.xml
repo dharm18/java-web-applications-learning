@@ -29,7 +29,7 @@
 
 
 <!-- SECURITY -->
-  <!-- <filter>
+  <filter>
     <filter-name>springSecurityFilterChain</filter-name>
     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
   </filter>
@@ -51,7 +51,7 @@
     <listener-class>
 	     org.springframework.security.web.session.HttpSessionEventPublisher
    </listener-class>
-  </listener> -->
+  </listener>
 
 
 

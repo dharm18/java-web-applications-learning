@@ -8,24 +8,22 @@
 						http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<http auto-config="false" authentication-manager-ref="static" use-expressions="true" disable-url-rewriting="true">
-		<intercept-url pattern="/login/login.htm" access="permitAll" />
-		<intercept-url pattern="/**/*.htm" access="isAuthenticated()" />
-		<form-login
-			login-page="/login/login.htm"
-			default-target-url="/user/workbench.htm"
-			username-parameter="username"
-			password-parameter="password"
-			authentication-failure-url="/login/login.htm?msg=invalid_credentials"
+		<intercept-url pattern="/login*" access="permitAll" />
+		<intercept-url pattern="/**/*" access="isAuthenticated()" />
+		<form-login 
+			login-page="/login"
+			authentication-failure-url="/login?error=true"
 		/>
-		<logout logout-success-url="/login/login.htm" logout-url="/j_spring_security_logout" invalidate-session="true" delete-cookies="JSESSIONID" />
-		<session-management session-fixation-protection="migrateSession" invalid-session-url="/login/login.htm" 
-			session-authentication-error-url="/login/login.htm?msg=sessionAuthError">
+		<logout invalidate-session="true" delete-cookies="JSESSIONID" />
+		<!-- <session-management session-fixation-protection="migrateSession" invalid-session-url="/login?error=true" 
+			session-authentication-error-url="/login?msg=sessionAuthError">
 			<concurrency-control max-sessions="1" 
-				error-if-maximum-exceeded="true" 
-				expired-url="/login/login.htm?msg=sessionExpired" 
+				error-if-maximum-exceeded="true"
+				expired-url="/login?msg=sessionExpired" 
 				session-registry-alias="sessionRegistry"/>
-		</session-management>
-		<csrf/>
+		</session-management> -->
+		<!-- <csrf/> -->
+		<remember-me/>
 	</http>
 
 	<beans:bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl" />
