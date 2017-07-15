@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_74"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/hibernate-lib"/>
+	<classpathentry kind="lib" path="D:/hibernate-release-5.2.9.Final/mysql-connector-java-6.0.6.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ehcache-lib"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
