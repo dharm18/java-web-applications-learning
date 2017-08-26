@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+			"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+			
+<beans>
+
+	<bean id="car" class="com.dharam.test.domain.StaticCar" />
+	
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		
+		<property name="staticMethod">
+			<value>com.dharam.test.domain.StaticCar.setName</value>
+		</property>
+		<property name="arguments">
+			<list>
+				<value>AUDI</value>
+			</list>
+		</property>
+	
+	</bean>
+
+</beans>
