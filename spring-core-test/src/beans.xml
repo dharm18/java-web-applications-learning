@@ -5,6 +5,25 @@
 <beans>
        <bean id="employee" class="com.dharam.test.domain.Employee" scope="prototype">
        		<property name="name" value="test"></property>
+       		<property name="age" value="11"></property>
+       		<property name="email" value="test@ttt.do"></property>
+       		<property name="address">
+       			<bean class="com.dharam.test.domain.Address">
+		       		<property name="city" value="Mumbai"></property>
+		       		<property name="state" value="Maharashtra"></property>
+		       </bean>
+       		</property>
+       		
+       		
+       		<!-- <property name="address" ref="address"></property> -->
+       		<!-- <constructor-arg value="123" type="int"></constructor-arg>
+       		<constructor-arg value="123" type="java.lang.String"></constructor-arg>
+       		<constructor-arg value="123@aaa.com" type="java.lang.String"></constructor-arg> -->
        </bean>
+       
+       <!-- <bean id="address" class="com.dharam.test.domain.Address">
+       		<property name="city" value="Mumbai"></property>
+       		<property name="state" value="Maharashtra"></property>
+       </bean> -->
   
 </beans>

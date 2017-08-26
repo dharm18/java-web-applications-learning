@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+			"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+			
+<beans>
+
+	<bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"></bean>
+
+	<bean id="e1" class="com.dharam.test.domain.Engine" dependency-check="simple">
+		<property name="modelYear" value="2013"></property>
+	</bean>
+	
+	<bean id="car" class="com.dharam.test.domain.CarD">
+		<property name="carName">
+				<value>Honda</value>
+		</property>
+		<property name="engine" ref="e1"></property>
+	</bean>
+
+</beans>
