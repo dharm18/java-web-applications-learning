@@ -4,6 +4,10 @@ public class Engine {
 
 	private String modelYear;
 
+	public Engine(){
+		
+	}
+	
 	public Engine(String modelYear) {
 		super();
 		this.modelYear = modelYear;

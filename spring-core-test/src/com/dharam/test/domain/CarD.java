@@ -9,6 +9,18 @@ public class CarD {
 	public String getCarName() {
 		return carName;
 	}
+	
+	public CarD(){
+		
+	}
+	
+	public CarD(Engine engine) {
+		super();
+		this.engine = engine;
+		System.out.println("using constructor engine");
+	}
+
+
 	@Required
 	public void setCarName(String carName) {
 		this.carName = carName;
@@ -18,6 +30,7 @@ public class CarD {
 	}
 	public void setEngine(Engine engine) {
 		this.engine = engine;
+		System.out.println("using setter engine");
 	}
 	@Override
 	public String toString() {
