@@ -10,28 +10,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd 
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd">
 
-	<bean id="t" class="com.dharam.test.domain.ReqdCollection">
-		<property name="fruits">
-			<util:list list-class="java.util.Vector">
-				<value>Mango</value>
-				<value>Apple</value>
-			</util:list>
-		</property>
-		<property name="cricketers">
-			<util:set set-class="java.util.TreeSet">
-				<value>Sachin</value>
-				<value>Sachin</value>
-				<value>Sehawag</value>
-			</util:set>
-		</property>
-		<property name="cc">
-			<util:map map-class="java.util.HashMap">
-				<entry key="india" value="delhi"></entry>
-				<entry key="india2" value="delhi2"></entry>
-			</util:map>
-		</property>
-	
-	</bean>
-
+	<bean id="c" class="com.dharam.test.domain.CarD" p:carName="Audi" p:engine-ref="e" />
+	<bean id="e" class="com.dharam.test.domain.Engine" c:modelYear="2017"></bean>
 
 </beans>
