@@ -8,4 +8,27 @@
 	<bean id="calendar" class="java.util.Calendar" factory-method="getInstance"/>
 	<bean id="s" class="com.dharam.test.domain.SingletonTest" factory-method="getInstance"></bean>
 
+	
+	
+	<!-- <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="staticMethod">
+			<value>com.dharam.test.domain.CarFactory.setCarName</value>
+		</property>
+		<property name="arguments">
+			<list>
+				<value>com.dharam.test.domain.Audi</value>
+			</list>
+		</property>
+		
+	</bean> -->
+	
+	<bean id="cf" class="com.dharam.test.domain.CarFactory">
+		<property name="carName" value="com.dharam.test.domain.Audi"></property>
+	</bean>
+	<bean id="car" class="com.dharam.test.domain.CarFactory" factory-method="getInstance" factory-bean="cf"></bean>
+	
+	<bean id="bus" class="com.dharam.test.domain.BusFactory">
+		<property name="carName" value="com.dharam.test.domain.Audi"></property>
+	</bean>
+	
 </beans>
