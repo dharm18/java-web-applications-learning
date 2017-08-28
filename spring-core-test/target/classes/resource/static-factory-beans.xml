@@ -6,5 +6,6 @@
 <beans>
 
 	<bean id="calendar" class="java.util.Calendar" factory-method="getInstance"/>
+	<bean id="s" class="com.dharam.test.domain.SingletonTest" factory-method="getInstance"></bean>
 
 </beans>

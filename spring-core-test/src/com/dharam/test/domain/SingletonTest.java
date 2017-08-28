@@ -14,4 +14,9 @@ public class SingletonTest {
 		
 		return instance;
 	}
+	
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		throw new CloneNotSupportedException();
+	}
 }
