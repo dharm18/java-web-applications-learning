@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log tail Server</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="javascripts/jquery-1.4.3.js"></script>
+    <style type="text/css" rel="stylesheet">
+        body {
+            background-color: #222;
+        }
+
+        #selector {
+            float: left;
+        }
+
+        #info {
+            font-size: 32px;
+            color: #000;
+            text-shadow: #444 1px 1px 2px;
+            text-align: right;
+            margin: 20px 10px;
+            text-transform: lowercase;
+        }
+
+        #tail {
+            clear: both;
+            border: 1px solid #444;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color: #333;
+            color: #EEE;
+            text-shadow: #000 0 0 2px;
+            height: 400px;
+            padding: 10px;
+            font-size: 12px;
+            line-height: 20px;
+        }
+
+        .trebuchet {
+            font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+        }
+
+        .monospace {
+            font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+        }
+
+        .selection::selection, .selection *::selection {
+            background: #EEE;
+            color: #000;
+            border-color: #000;
+            text-shadow: #fff 0 0 2px;
+        }
+
+        .selection::-moz-selection, .selection *::-moz-selection {
+            background: #EEE;
+            color: #000;
+            border-color: #000;
+            text-shadow: #fff 0 0 2px;
+        }
+    </style>
+</head>
+<body>
+<div id="selector"><select id="selectLogs">
+    <option value="" selected>-- select a log --</option>
+</select></div>
+<div id="info" class="trebuchet"></div>
+<div id="tail" class="monospace selection"></div>
+<script type="text/javascript">
+	
+	var socket = new WebSocket("ws://localhost:8080/LogViewer/fetchlogs"); 
+    $(document).ready(function() {
+    	/*try {
+    		$.ajax({
+    			type: 'GET',
+    			url: 'logViewer.htm',
+    			cache: false,
+    			beforeSend : function(){
+    				//$('.loader').fadeIn();
+    			},
+    			success: function(data){
+    				//$('#tail').html(data);
+    				var data = jQuery.parseJSON(data);
+    				var selector = $("#selector select");
+    				$.each(data, function() {
+                        var log = new Option(this, this);
+                        if ($.browser.msie) selector[0].add(log); else selector[0].add(log, null);
+                    });
+    			},
+    			error: function(xhr, textStatus, errorThrown) {
+    				//console.log(errorThrown);
+    				$('.loader').fadeOut();
+    			},
+    			complete : function(){
+    				//disable loader
+    				$('.loader').fadeOut();
+    			}
+    		});
+    	} catch (e) {
+    		console.log(e);
+    	}
+    	*/
+    	//
+    	$('#selectLogs').change(function(){
+    		//streamFile($(this).val());
+    		socket.send($(this).val());
+    	});
+    	var buffer = $('#tail');
+    	buffer.empty();
+    	var i=0;
+		socket.onopen = function(event){
+			buffer.html(buffer.html()+"Connected!"); 
+		};
+    	socket.onmessage = function(event) {
+    	   console.log(event);
+    	   i++;
+    	   if(i===1){
+    		   var data = jQuery.parseJSON(event.data);
+				var selector = $("#selector select");
+				$.each(data, function() {
+                   var log = new Option(this, this);
+                   if ($.browser.msie) selector[0].add(log); else selector[0].add(log, null);
+               });
+    	   }
+    	   else{
+    		   if (event.data) {
+    	   		      //var receivedSticker = JSON.parse(event.data);
+    	   		      var receivedSticker = event.data;
+    	   		      //console.log("Received Object: " + JSON.stringify(receivedSticker));
+    	   		      /*if(receivedSticker.length >= 4 && receivedSticker.substring(0,4) === "INFO" ){
+    	   		    	console.log("length " + receivedSticker.length);
+    	   		    	receivedSticker = "<pre style='color:green'>"+receivedSticker+"<pre>";
+    	   		      }*/
+    	   		   	console.log("Received Object: " + JSON.stringify(receivedSticker));
+    	   		      /*$.each(receivedSticker,function(index,value){
+    	       		   	  buffer.html(buffer.html()+stripHTML(value)+"<br/>");
+    	   		      });*/
+    	   		   	  //buffer.html(buffer.html()+stripHTML(receivedSticker)+"<br/>");
+    	   		   	  if(receivedSticker.match("INFO")){
+    	  		    	console.log("length " + receivedSticker.length);
+    	  		    	receivedSticker = "<p style='color:green'>"+stripHTML(receivedSticker)+"</p>";
+    	  		      }
+    			      else if(receivedSticker.match("ERROR")){
+    	  		    	console.log("length " + receivedSticker.length);
+    	  		    	receivedSticker = "<p style='color:red'>"+stripHTML(receivedSticker)+"</p>";
+    	  		      }
+    			      else if(receivedSticker.match("WARN")){
+    	      		    	console.log("length " + receivedSticker.length);
+    	      		    	receivedSticker = "<p style='color:orange'>"+stripHTML(receivedSticker)+"</p>";
+    	      		  }
+    				  else {
+    					receivedSticker = stripHTML(receivedSticker);
+    				  }
+    	   		 		buffer.html(buffer.html()+receivedSticker); 
+    	   		   }
+    	   }
+   		   
+    	};
+    	socket.onerror = function(event){
+            console.log("Error ", event)
+        }
+    });
+    function stripHTML(dirtyString) {
+    	  var container = document.createElement('div');
+    	  var text = document.createTextNode(dirtyString);
+    	  container.appendChild(text);
+    	  return container.innerHTML; // innerHTML will be a xss safe string
+    	}
+    
+    $( window ).unload(function() {
+    	socket.close();	
+    	return null;
+   	});
+    
+</script>
+</body>
+</html>
