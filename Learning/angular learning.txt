@@ -1,0 +1,15 @@
+New things
+
+- immediately invoked function expression ( IIFY)
+- revealing module pattern
+
+Controller
+- ng-controller directive
+- ng-src src of image incase of databinding directive
+
+- Http service : then callback
+
+
+
+
+
