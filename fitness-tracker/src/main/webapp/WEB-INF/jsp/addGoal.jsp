@@ -1,20 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Add Minutes Page</title>
+<title>Add Goal</title>
 </head>
 <body>
-<h1>Add Minutes Exercised</h1>
-Language : <a href="?language=en">English</a> | <a href="?language=es">Spanish</a>
-<form:form modelAttribute="exercise">
-	<table>
+<form:form modelAttribute="goal">
+<table>
 		<tr>
-			<td><spring:message code="goal.text" /></td>
+			<td>Enter minutes:</td>
 			<td><form:input path="minutes"/></td>
 		</tr>
 		<tr>
@@ -23,8 +20,7 @@ Language : <a href="?language=en">English</a> | <a href="?language=es">Spanish</
 			</td>
 		</tr>
 	</table>
-</form:form>
 
-<h1>Goal for the day : ${goal.minutes}</h1>
+</form:form>
 </body>
 </html>
