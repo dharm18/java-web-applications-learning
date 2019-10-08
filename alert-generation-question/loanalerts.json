@@ -1,0 +1,26 @@
+[
+  {
+    "id": "loan23",
+    "creditpolicy": "policy2",
+    "amount": 67804.0,
+    "eligible_collateral": 4895.4488
+  },
+  {
+    "id": "loan29",
+    "creditpolicy": "policy1",
+    "amount": 147589.0,
+    "eligible_collateral": 15590.725600000002
+  },
+  {
+    "id": "loan48",
+    "creditpolicy": "policy2",
+    "amount": 57939.0,
+    "eligible_collateral": 984.9630000000001
+  },
+  {
+    "id": "loan52",
+    "creditpolicy": "policy1",
+    "amount": 49576.0,
+    "eligible_collateral": 5552.512
+  }
+]
